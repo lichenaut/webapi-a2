@@ -148,5 +148,12 @@ router
   });
 
 app.use("/", router);
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'none'; script-src 'elf' 'unsafe-inline';"
+  );
+  next();
+});
 app.listen(process.env.PORT || 8080);
 module.exports = app; // for testing only

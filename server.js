@@ -147,7 +147,6 @@ router
     res.status(405).send({ message: "HTTP method not supported." });
   });
 
-app.use("/", router);
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
@@ -155,5 +154,6 @@ app.use((req, res, next) => {
   );
   next();
 });
+app.use("/", router);
 app.listen(process.env.PORT || 8080);
 module.exports = app; // for testing only
